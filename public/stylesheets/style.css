@@ -1,0 +1,270 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+header{
+  position: absolute;
+  left: 0;
+  top:0;
+  width: 100%;
+  height: 25%;
+  border-bottom-left-radius: 8em;
+  border-bottom-right-radius: 8em;
+  background-color: #00008B;
+  box-shadow: #1874CD 0.5em 0.5em 0.3em
+}
+
+.logo{
+  position: relative;
+  float: left;
+  margin-left: 10%;
+  top: 10%;
+  width: 10%;
+  height: 80%;
+}
+
+.gop{
+  position: relative;
+  top:40%;
+  float: left;
+  margin-left: 5%;
+  width: 50%;
+  height: 20%;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: white;
+}
+
+.home{
+  position: absolute;
+  top: 45%;
+  left: 30%;
+  width: 35%;
+  height: 48%;
+  padding: 2% 5% 5% 5%;
+  background-color:#1874CD;
+  border-radius: 2.5em;
+  -webkit-print-color-adjust: exact;
+}
+
+.corpo{
+	position: absolute;
+	top: 25%;
+	width: 96%;
+	left: 2%;
+	height: 74%;
+	margin-top: 1%;
+}
+
+.selecionados{
+  padding-left: 3px;
+}
+
+.inputBox{
+  padding-top: 6px;
+}
+
+
+
+
+.tabela{
+  border-style: solid;
+  border-width: 1px;
+  border-color: white;
+  width: 100%;
+}
+
+td{
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+  vertical-align: middle;
+  width: 20%;
+}
+
+tr{
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+}
+
+
+.justificado{
+  text-align: justify;
+}
+
+.centralizado{
+  text-align: center;
+}
+
+.negrito{
+  font-weight: bold;
+  -webkit-print-color-adjust: exact;
+}
+
+.amarelo{
+  background-color: yellow;
+  -webkit-print-color-adjust: exact;
+}
+
+.tituloTabela{
+  border-style: solid;
+  border-width: 1px;
+  width: 100%;
+  height: 30px;
+}
+
+.brasao{
+  float: left;
+  width: 65px;
+  height: 65px;
+  margin-left: 40px;
+
+}
+
+.headerTabela{
+  background-color: #87CEFA;
+  color: red;
+}
+
+.headerTabelaTexto{
+  float: left;
+  width: 500px;
+  height: 100px;
+  margin-left: 50px;
+}
+
+.jogos{
+  float: right;
+  width: 65px;
+  height: 65px;
+  margin-right: 85px;
+
+}
+
+
+.dataHeader{
+  float: right;
+}
+
+.odd{
+  background-color: #FFA500;
+  color: #607B8B;
+  -webkit-print-color-adjust: exact;
+}
+.even{
+  background-color: #607B8B;
+  color: #FFA500;
+  -webkit-print-color-adjust: exact;
+}
+
+.glyphicon-refresh-animate {
+    color: white;
+    -animation: spin .7s infinite linear;
+    -ms-animation: spin .7s infinite linear;
+    -webkit-animation: spinw .7s infinite linear;
+    -moz-animation: spinm .7s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+  
+@-webkit-keyframes spinw {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@-moz-keyframes spinm {
+    from { -moz-transform: rotate(0deg);}
+    to { -moz-transform: rotate(360deg);}
+}
+
+    /*CSS para impressão*/
+    @media print {
+          @page {
+          margin: 0.5cm;
+          }
+    }
+
+#body-m{
+    background-color: #363636;
+    height: 1200px;
+}
+
+.fonteBranca{
+  color: white;
+}
+
+.error{
+  color: red;
+}
+
+.corpoProdutos{
+  margin-top: 2%;
+}
+
+.centroTag{
+  align-content: center;
+}
+
+.bordaBranca{
+  border-style: solid;
+  border-color: white;
+  border-width: 2px;
+}
+
+.logoff {
+  color: red;
+  font-weight: bolder;
+}
+
+.usuario{
+  color: green;
+}

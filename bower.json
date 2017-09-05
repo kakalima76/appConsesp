@@ -1,0 +1,26 @@
+{
+  "name": "horus-agentes",
+  "description": "",
+  "main": "public/javascripts/app.js",
+  "authors": [
+    "kakalima76 <nieraldo@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/kakalima76/horus-agentes",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "public/components"
+  ],
+  "dependencies": {
+    "angular": "*",
+    "angular-route": "^1.5.6",
+    "bootstrap": "^3.3.6",
+    "jquery-ui-datepicker-languages": "bower-jquery-ui-datepickers#^0.0.2",
+    "bower": "*",
+    "jquery-ui": "^1.11.4"
+  }
+}

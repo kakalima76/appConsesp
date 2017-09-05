@@ -1,0 +1,55 @@
+<ul class="list-group">
+
+	<li class="list-group-item">
+	<span class="badge" ng-bind="lacre.localCadastro"></span>
+	Local
+	</li>
+
+	<li class="list-group-item">
+	<span class="badge" ng-bind="lacre.numero"></span>
+	Lacre
+	</li>
+
+	<li class="list-group-item">
+	<span class="badge" ng-bind="lacre.auto"></span>
+	Auto
+	</li>
+
+	<li class="list-group-item">
+	<span class="badge" ng-bind="lacre.trm"></span>
+	TRM
+	</li>
+
+	<li class="list-group-item">
+	<span class="badge" ng-bind="lacre.data"></span>
+	Data
+	</li>
+
+	<li class="list-group-item">
+	<span class="badge" ng-bind="lacre.hora"></span>
+	Hora
+	</li>
+
+	<li class="list-group-item">
+	<span class="badge" ng-bind="lacre.agente"></span>
+	Agente
+	</li>
+
+	<li class="list-group-item">
+	<span class="badge" ng-bind="lacre.bairro"></span>
+	Bairro
+	</li>
+
+	<li class="list-group-item">
+	<span class="badge" ng-bind="lacre.logradouro"></span>
+	Logradouro
+	</li>
+
+	<div ng-repeat="mercadoria in lacre.mercadoria">
+		<li class="list-group-item">
+		<span class="badge" ng-bind=" mercadoria.quantidade + '  ' + mercadoria.produto"></span>
+		Mercadoria
+		</li>
+	</div>
+
+</ul>
