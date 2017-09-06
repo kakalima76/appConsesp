@@ -1,0 +1,89 @@
+<widget-header titulo = 'Cadastro de Colaborador'></widget-header>
+<div class="corpo">
+		<nav class="navbar navbar-inverse">
+  			<div class="container">
+		   		<ul class="nav nav-pills">
+		  			<li role="presentation"><a href="/#/concursos">Cadastro de concursos</a></li>
+		  			<li role="presentation"  class="active"><a href="">Cadastro de colaborador</a></li>
+		  			<li role="presentation"><a href="/#/estatisticas">Gerar estatísticas</a></li>
+		  			<li role="presentation"><a href="/#/lacres">Buscar lacre</a></li>
+                    <li ng-click="vm.logoff()"><a href="/#/" class="logoff">logoff</a></li>
+                    <li role="presentation"><a href="" class="usuario">{{vm.user}}</a></li>
+                    <li role="presentation"><a href="" class="usuario">{{vm.local}}</a></li>
+		  		</ul>
+  			</div>
+		</nav>
+		
+		<form name="myForm">
+        <div class="form-group">
+
+            <label class="fonteBranca">CPF</label>
+            <input type="text" class="form-control" placeholder="cpf" ng-model='vm.cadastro.cpf' ng-blur="vm.alertaCPF(vm.cadastro.cpf)">
+
+            <label class="fonteBranca">PIS/PASEP</label>
+            <input type="text" class="form-control" placeholder="pis/pasep" ng-model='vm.cadastro.pispasep' ng-blur="vm.alertaPIS(vm.cadastro.pispasep)">
+
+            <label class="fonteBranca">Nome completo</label>
+            <input type="text" class="form-control" placeholder="nome completo" ng-model='vm.cadastro.nome'>
+
+            <label class="fonteBranca">Nome da mãe</label>
+            <input type="text" class="form-control" placeholder="nome da mãe" ng-model='vm.cadastro.nomeMae'>
+
+            <label class="fonteBranca">Identidade</label>
+            <input type="text" class="form-control" placeholder="Identidade" ng-model='vm.cadastro.idt'>
+
+            <label class="fonteBranca">Emissor</label>
+            <input type="text" class="form-control" placeholder="emissor" ng-model='vm.cadastro.emissor'>
+
+            <label class="fonteBranca">UF emissor</label>
+            <input type="text" class="form-control" placeholder="emissor" ng-model='vm.cadastro.ufEmissor' maxlength="2">
+
+            <label class="fonteBranca">Data emissão</label>
+            <input type="text" class="form-control" placeholder="data da emissão" ng-model="vm.cadastro.dataEmissao" maxlength="10">
+
+            
+            <label class="fonteBranca">Nascimento</label>
+            <input class="form-control"  placeholder="nascimento (yyyy-mm-dd)" ng-model='vm.cadastro.nascimento' maxlength="10">
+
+           <label class="fonteBranca">Sexo</label>
+            <select ng-model='vm.cadastro.sexo' class="form-control" ng-options="item.sexo for item in vm.opcoes track by item.codigo"></select>
+
+            <label class="fonteBranca">Estado Civil</label>
+            <select ng-model='vm.cadastro.estadoCivil' class="form-control" ng-options="item for item in vm.estadoCivil track by item"></select>    
+
+            <label class="fonteBranca">CEP</label>
+            <input class="form-control"  placeholder="CEP" ng-model='vm.cadastro.cep' maxlength="9" ng-blur="vm.buscarCep(vm.cadastro.cep)">
+
+            <label class="fonteBranca">Logradouro</label>
+            <input class="form-control"  placeholder="Logradouro" ng-model='vm.cadastro.endereco'>
+
+            <label class="fonteBranca">Número</label>
+            <input class="form-control"  placeholder="número" ng-model='vm.cadastro.numero'>
+
+             <label class="fonteBranca">Complemento</label>
+            <input class="form-control"  placeholder="número" ng-model='vm.cadastro.complemento'>
+
+            <label class="fonteBranca">Bairro</label>
+            <input class="form-control"  placeholder="bairro" ng-model='vm.cadastro.bairro'>
+
+            <label class="fonteBranca">Município</label>
+            <input class="form-control"  placeholder="município" ng-model='vm.cadastro.municipio'>
+
+            <label class="fonteBranca">UF</label>
+            <input class="form-control"  placeholder="uf" ng-model='vm.cadastro.uf'>
+
+            <label class="fonteBranca">Contato</label>
+            <input type="tel" class="form-control"  placeholder="contato" ng-model='vm.cadastro.contato'>
+
+            <label class="fonteBranca">Email</label>
+            <input type="tel" class="form-control"  placeholder="e-mail" ng-model='vm.cadastro.email'>
+
+
+            <div class="corpoProdutos fonteBranca">
+                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.salvar(vm.cadastro)">Salvar cadastro</button>
+            </div>
+
+        </div>
+    </form> 
+
+</div>

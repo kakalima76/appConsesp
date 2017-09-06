@@ -1,0 +1,35 @@
+<widget-header titulo = 'Cadastro de Concursos'></widget-header>
+<div class="corpo">
+		<nav class="navbar navbar-inverse">
+  			<div class="container">
+		   		<ul class="nav nav-pills">
+		   			<li role="presentation" class="active"><a href="">Cadastro de Concursos</a></li>
+		  			<li role="presentation"><a href="/#/cadastro">Cadastro de colaborador</a></li>
+		  			<li role="presentation"><a href="/#/estatisticas">Gerar estatísticas</a></li>
+		  			<li role="presentation"><a href="/#/lacres">Buscar lacre</a></li>
+		  			<li ng-click="vm.logoff()"><a href="/#/" class="logoff">logoff</a></li>
+		  			<li role="presentation"><a href="" class="usuario">{{vm.user}}</a></li>
+		  			<li role="presentation"><a href="" class="usuario">{{vm.local}}</a></li>
+		  		</ul>
+  			</div>
+		</nav>
+
+	<form name="myForm">
+		<div class="form-group">
+    		<label class="fonteBranca">Nome do concurso</label>
+    		<input type="text" class="form-control" placeholder="número do auto de apreensão" ng-model='vm.concurso.nome'>
+
+    		
+    		<label class="fonteBranca">Data</label>
+    		<input class="form-control"  placeholder="data" ng-model='vm.concurso.data' datepicker>
+
+
+			<div class="corpoProdutos fonteBranca">
+				<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.salvar(vm.concurso)">Salvar auto</button>
+			</div>
+
+		</div>
+	</form>	
+
+
+</div>

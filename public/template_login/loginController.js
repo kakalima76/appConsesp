@@ -25,10 +25,11 @@ angular.module('app')
 			vm.mostrarLoading = true;
 			 var promise = agentesService.getAuth(vm.user);
 			 promise.then(function(usuario){
+		
 			 if(!isEmpty(usuario.data)){
 				 	if(usuario.data.senha === vm.pass){
 				 		$window.localStorage['usuario'] = usuario.data.nome;
-				 		$location.path('autos');
+				 		$location.path('concursos');
 				 	}else{
 				 		vm.showError = true;
 				 	}

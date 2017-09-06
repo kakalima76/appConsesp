@@ -8,58 +8,58 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 		controllerAs: 'vm'
 	})
 
-	.when('/autos', {
-		templateUrl: 'template_auto/auto.html',
-		controller: 'autoController',
-		controllerAs: 'vm',
+	.when('/concursos', {
+		templateUrl: 'template_concurso/concurso.html',
+		controller: 'concursoController',
+		controllerAs: 'vm'/*,
 		resolve:{
 			auth: ['authService', '$window', function(authService, $window){
 				var promise = authService.autentica($window.localStorage['usuario']);
 				return promise;
 			}]
-		}
+		}*/
 	})
 
-	.when('/anexos', {
-		templateUrl: 'template_anexo/anexo.html',
-		controller: 'anexoController',
-		controllerAs: 'vm',
+	.when('/cadastro', {
+		templateUrl: 'template_cadastro/cadastro.html',
+		controller: 'cadastroController',
+		controllerAs: 'vm'/*,
 		resolve:{
 			auth: ['authService', '$window', function(authService, $window){
 				var promise = authService.autentica($window.localStorage['usuario']);
 				return promise;
 			}]
-		}
+		}*/
 	})
 
 	.when('/estatisticas', {
 		templateUrl: 'template_estatistica/estatistica.html',
 		controller: 'estatisticaController',
-		controllerAs: 'vm',
+		controllerAs: 'vm'/*,
 		resolve:{
 			auth: ['authService', '$window', function(authService, $window){
 				var promise = authService.autentica($window.localStorage['usuario']);
 				return promise;
 			}]
-		}
+		}*/
 	})
 
 	.when('/lacres', {
 		templateUrl: 'template_lacre/lacre.html',
 		controller: 'lacreController',
-		controllerAs: 'vm',
+		controllerAs: 'vm'/*,
 		resolve:{
 			auth: ['authService', '$window', function(authService, $window){
 				var promise = authService.autentica($window.localStorage['usuario']);
 				return promise;
 			}]
-		}
+		}*/
 	})
 
 	.otherwise({redirectTo: '/'});
 
 	$locationProvider.html5Mode({
-  		enabled: true,
+  		enabled: false,
   		requireBase: false
 	});
 
