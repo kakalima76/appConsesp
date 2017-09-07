@@ -17,6 +17,8 @@
 		<label class="fonteBranca">Escolha um concurso</label>
             <select ng-model='vm.concursoAtual' class="form-control" ng-options="item.nome for item in vm.opcoes track by item.nome" ng-change="vm.mudar(vm.concursoAtual)"></select>
 
+    
+
         <div class="inputBox">
     		<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.buscar(vm.concursoAtual)">Buscar colaboradores para o concurso</button>
     	</div>
@@ -34,6 +36,10 @@
               </div>
             </div>
 		</div>
+
+        <label class="fonteBranca">Escolha um função</label>
+        <select ng-model='vm.funcao' class="form-control" ng-options="item.funcao for item in vm.funcoes track by item.funcao"></select>
+
     </form>
 
          <div class="inputBox">

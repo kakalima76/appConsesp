@@ -12,6 +12,24 @@ angular.module('app')
 	});
 
 
+	vm.funcoes = 
+	[
+		{'funcao': 'Fiscal', 'valor': 0},
+		{'funcao': 'Fiscal de Detector', 'valor': 0},
+		{'funcao': 'Apoio', 'valor': 0},
+		{'funcao': 'Bombeiro Hidráulico', 'valor': 0},
+		{'funcao': 'Fiscal Volante', 'valor': 0},
+		{'funcao': 'Fiscal', 'valor': 0},
+		{'funcao': 'Coordenador', 'valor': 0}, 
+		{'funcao': 'Auxiliar de Coordenação', 'valor': 0}, 
+		{'funcao': 'Administrador', 'valor': 0},
+		{'funcao': 'Chefe de Local', 'valor': 0},
+		{'funcao': 'Representante', 'valor': 0},
+		{'funcao': 'Eletricista', 'valor': 0} ,
+		{'funcao': 'Porteiro', 'valor': 0},
+		{'funcao': 'Interprete de libras', 'valor': 0}
+	]
+
 	function compareNome(a,b) {
 	  	if(a.nome < b.nome){
 	  		return -1;
@@ -33,7 +51,7 @@ angular.module('app')
 		
 	}
 
-	//função para transformar a string de data da resposta em um data real
+	//funcao para transformar a string de data da resposta em um data real
 	var geraData = function(data){
 		var data = data.substring(0,4) + '-' + data.substring(5,7) + '-' + data.substring(8,10);
 		
@@ -79,32 +97,41 @@ angular.module('app')
 
 	
 	vm.salvar = function(value){
-		var filtro = function(value){
-			return value.escolhido
-		}
 
-		var resp = vm.colaboradores.filter(filtro);
+		if(vm.funcao){
 
-		var array = [];
+			var filtro = function(value){
+				return value.escolhido
+			}
 
-		resp.forEach(function(value){
+			var resp = vm.colaboradores.filter(filtro);
 
-			var obj = {}
-			obj.cpf = value.cpf;
-			obj.data = vm.concursoAtual.data;
-			obj.periodo = vm.concursoAtual.periodo;
-			obj.nome = vm.concursoAtual.nome;
-			array.push(obj);
-		})
+			var array = [];
 
+			resp.forEach(function(value){
 
-		array.forEach(function(value){
-			var promise = consespService.criarConcurso(value);
-			promise.then(function(data){
-				vm.colaboradores = {}
+				var obj = {}
+				obj.cpf = value.cpf;
+				obj.data = vm.concursoAtual.data;
+				obj.periodo = vm.concursoAtual.periodo;
+				obj.nome = vm.concursoAtual.nome;
+				obj.funcao = vm.funcao.funcao;
+				array.push(obj);
 			})
-		})
+
+
+			array.forEach(function(value){
+				var promise = consespService.criarConcurso(value);
+				promise.then(function(data){
+					vm.colaboradores = {}
+				})
+			})
+		
+		}else{
+			$window.alert("Selecione uma função");
+		}//testando para ver se foi escolhida uma função
 	}
+
 	
 
 }]);

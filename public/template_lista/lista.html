@@ -25,6 +25,7 @@
                 <tr>
                     <td class="centralizado headerTabela coluna1">cpf</td>
                     <td class="centralizado headerTabela" >nome</td>
+                    <td class="centralizado headerTabela coluna1">função</td>
                     <td class="centralizado headerTabela coluna1">ação</td>
                     <td class="centralizado headerTabela coluna1">ação</td>
                     
@@ -32,8 +33,10 @@
                 <tr ng-repeat="campo in vm.listaColaboradores">
                     <td class="centralizado fundoBranco coluna1">{{campo.cpf}}</td>
                     <td class="fundoBranco afastamentoTabelaEsquerda">{{campo.nome}}</td>
+                     <td class="fundoBranco afastamentoTabelaEsquerda coluna1">{{campo.funcao}}</td>
+
                     <td class="centralizado fundoBranco coluna1">
-                        <li class="list-group-item" ng-click='vm.imprimir(campo.cpf)'>
+                        <li class="list-group-item" ng-click='vm.imprimir(campo)'>
                         <span class="badge"></span>
     
                         <a  ng-href="">imprimir recibo</a>

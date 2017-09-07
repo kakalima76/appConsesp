@@ -280,3 +280,43 @@ tr{
 .afastamentoTabelaEsquerda {
   padding-left: 5px;
 }
+
+.rpa{
+  position: absolute;
+  left: 1%;
+  right: 1%;
+  top: 15%;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  padding: 5px;
+}
+
+p{
+  font-family: Arial, Verdana, Sans-serif;
+  font-size: 0.8em;
+  line-height: 28px;
+  text-align: justify;
+}
+
+.pagamento{
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    padding: 5px;
+}
+
+.data{
+    
+    padding-bottom: 15px;
+}
+
+#assinatura{
+  position: relative;
+  left: 1%;
+  top: 25%;
+  width: 35%;
+  border-top-style: solid;
+  border-color: black;
+  border-width: 1px;
+}

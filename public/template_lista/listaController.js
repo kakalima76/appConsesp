@@ -1,5 +1,5 @@
 angular.module('app')
-.controller('listaController', ['$window', 'consespService', '$scope', '$route',function($window, consespService, $scope, $route){
+.controller('listaController', ['cadastroFactory', '$window', 'consespService', '$scope', '$route', '$location', function(cadastroFactory, $window, consespService, $scope, $route, $location){
 	var vm = this;
 	var arrayColaboradores;
 	vm.user = $window.localStorage['usuario'];
@@ -22,7 +22,6 @@ angular.module('app')
 	
 	vm.logoff = function(){
 		$window.localStorage.removeItem('usuario');
-		console.log('teste');
 	}
 
 	function compareNome(a,b) {
@@ -46,21 +45,26 @@ angular.module('app')
 	}
 
 	vm.mudar = function(obj){
+		var funcao;
+
 		vm.listaColaboradores = [];
 		arrayColaboradores.forEach(function(cadastro){
 			cadastro.concursos.forEach(function(concurso){
 				if(concurso.nome === obj.nome){
 					vm.listaColaboradores.push(cadastro);
+					cadastro.funcao = concurso.funcao;
+					cadastro.local = vm.lista.nome;
 				}
 			})
 		})
 
+		console.log(arrayColaboradores);
+
 	}
 
 	vm.imprimir = function(value){
-		var obj = {}
-		obj['cpf'] = value;
-		console.log(obj);
+		cadastroFactory.set(value);
+		$location.path('imprimir');
 	}
 
 	vm.excluir = function(array){

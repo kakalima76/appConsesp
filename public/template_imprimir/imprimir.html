@@ -1,0 +1,33 @@
+<div class="fundoBranco altura">
+<CENTER><h2><b><u>Recibo de Pagamento Autônomo</u></b></h2></CENTER>
+
+<div class="rpa fundoBranco">
+	<h4><b><u>DADOS PESSOAIS</u></b></h4>
+	<p>{{vm.linha1}}</p>
+	<p>{{vm.linha2}}</p>
+	<p>{{vm.linha3}}</p>
+	<p>{{vm.linha4}}</p>
+	<p>{{vm.linha5}}</p>
+	<p>{{vm.linha6}}</p>
+	<h4><b><u>INFORMAÇÕES DE PAGAMENTO</u></b></h4>
+
+	<div class="pagamento fundoBranco">
+		<p> {{vm.pagamento}}
+	</div>
+
+	<p>{{vm.declaracao}}</p>
+
+
+
+	<div class="data">
+		<p><center>Rio, {{vm.dataAtual}}</p>
+	</div>
+
+	<center><div id="assinatura">
+		{{vm.cadastro.nome | uppercase}}
+	</div></center>
+
+</div>
+
+
+</div>

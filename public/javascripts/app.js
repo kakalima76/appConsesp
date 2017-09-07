@@ -56,6 +56,18 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 		}*/
 	})
 
+	.when('/imprimir', {
+		templateUrl: 'template_imprimir/imprimir.html',
+		controller: 'imprimirController',
+		controllerAs: 'vm'/*,
+		resolve:{
+			auth: ['authService', '$window', function(authService, $window){
+				var promise = authService.autentica($window.localStorage['usuario']);
+				return promise;
+			}]
+		}*/
+	})
+
 	.otherwise({redirectTo: '/'});
 
 	$locationProvider.html5Mode({
