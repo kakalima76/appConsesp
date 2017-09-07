@@ -25,15 +25,28 @@
                 <tr>
                     <td class="centralizado headerTabela coluna1">cpf</td>
                     <td class="centralizado headerTabela" >nome</td>
-                    <td class="centralizado headerTabela coluna1" >ação</td>
                     <td class="centralizado headerTabela coluna1">ação</td>
+                    <td class="centralizado headerTabela coluna1">ação</td>
+                    
                 </tr>
                 <tr ng-repeat="campo in vm.listaColaboradores">
                     <td class="centralizado fundoBranco coluna1">{{campo.cpf}}</td>
                     <td class="fundoBranco afastamentoTabelaEsquerda">{{campo.nome}}</td>
-                    <td class="centralizado fundoBranco coluna1" ng-click="vm.imprimir(campo.cpf)">imprimir</td>
-                    <td class="centralizado fundoBranco coluna1" ng-click="vm.excluir(campo.cpf)">excluir</td>
-                    
+                    <td class="centralizado fundoBranco coluna1">
+                        <li class="list-group-item" ng-click='vm.imprimir(campo.cpf)'>
+                        <span class="badge"></span>
+    
+                        <a  ng-href="">imprimir recibo</a>
+                        </li>
+
+                    </td>
+                    <td class="centralizado fundoBranco coluna1">
+                        <li class="list-group-item" ng-click='vm.excluir(campo)'>
+                        <span class="badge"></span>
+                        <a  ng-href="">excluir</a>
+                        </li>
+                    </td>
+                     
                 </tr>
         </table>
     </div>

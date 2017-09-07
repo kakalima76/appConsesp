@@ -2,7 +2,7 @@
 angular.module('app')
 
 .service('consespService', ['$http', function($http){
-	
+
 
 	var getConcursos = function(){
 		return $http.get('https://restconsesp.herokuapp.com/cadastro/listarNomeConcursos');
@@ -21,16 +21,23 @@ angular.module('app')
 		return $http.post('https://restconsesp.herokuapp.com/cadastro/criarNomeConcurso', obj)
 	}
 
-	var setStatusConcurso = function(obj){
-		return $http.post('https://restconsesp.herokuapp.com/cadastro/atualizarEscalado', obj)
+	var criarConcurso = function(obj){
+		return $http.post('https://restconsesp.herokuapp.com/cadastro/criarConcurso', obj)
 	}
+
+	var removerConcurso = function(obj){
+		return $http.post('https://restconsesp.herokuapp.com/cadastro/removerConcurso', obj)
+	}
+
+		
 
 	return {
 		getConcursos: getConcursos,
 		getColaboradores: getColaboradores,
 		setColaborador: setColaborador,
 		setConcurso: setConcurso,
-		setStatusConcurso: setStatusConcurso
-	}
+		criarConcurso: criarConcurso,
+		removerConcurso: removerConcurso
+		}
 
 }])

@@ -18,7 +18,7 @@
             <select ng-model='vm.concursoAtual' class="form-control" ng-options="item.nome for item in vm.opcoes track by item.nome" ng-change="vm.mudar(vm.concursoAtual)"></select>
 
         <div class="inputBox">
-    		<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.buscar(vm.colaboradores)">Buscar colaboradores para o concurso</button>
+    		<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.buscar(vm.concursoAtual)">Buscar colaboradores para o concurso</button>
     	</div>
     	
 

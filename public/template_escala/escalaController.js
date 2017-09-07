@@ -2,7 +2,7 @@ angular.module('app')
 .controller('escalaController', ['$window', 'consespService',function($window, consespService){
 	var vm = this;
 	vm.user = $window.localStorage['usuario'];
-	vm.colaboradores = {}
+	vm.colaboradores = [];
 	var arrayDeColaboradores = [];
 	vm.concursoAtual = {}
 
@@ -40,30 +40,36 @@ angular.module('app')
 	};
 
 
+	vm.mudar = function(){
+		vm.colaboradores = [];
+	}
+
 	vm.buscar = function(value){
+	vm.colaboradores = [];
 
-
-		if(vm.concursoAtual){
-			console.log(vm.concursoAtual.periodo);
+		if(value.data){
 			var promiseColaboradores = consespService.getColaboradores();
 			promiseColaboradores.then(function(data){
-
-			var filtro = function(value){
-				console.log(vm.concursoAtual.periodo);
-				if(vm.concursoAtual.periodo == 'Manha'){
-					return (value.dataEscalado != vm.concursoAtual.data) || value.manha == 0;
-				}else{
-					return (value.dataEscalado != vm.concursoAtual.data) || value.tarde == 0;
-				} 				
-			}
-
-			data.data = data.data.filter(filtro);
-
-			console.log(data.data);
 			
-			vm.colaboradores = data.data.sort(compareNome);
-	
-			})	
+				data.data.forEach(function(cadastro){
+					
+					if(cadastro.concursos.length > 0){
+
+						cadastro.concursos.forEach(function(concurso){
+
+							if(concurso.nome !== value.nome){
+								vm.colaboradores.push(cadastro);
+							}
+						})
+
+					}else{
+						vm.colaboradores.push(cadastro);
+					}
+						
+				})
+
+			});
+
 		}else{
 			$window.alert("Escolha um concurso.");
 		}
@@ -85,18 +91,15 @@ angular.module('app')
 
 			var obj = {}
 			obj.cpf = value.cpf;
-			obj.dataEscalado = vm.concursoAtual.data;
-			if(vm.concursoAtual.periodo === 'Manha'){
-				obj['manha'] = 1;
-			}else{
-				obj['tarde'] = 1;
-			}
+			obj.data = vm.concursoAtual.data;
+			obj.periodo = vm.concursoAtual.periodo;
+			obj.nome = vm.concursoAtual.nome;
 			array.push(obj);
 		})
 
 
 		array.forEach(function(value){
-			var promise = consespService.setStatusConcurso(value);
+			var promise = consespService.criarConcurso(value);
 			promise.then(function(data){
 				vm.colaboradores = {}
 			})
