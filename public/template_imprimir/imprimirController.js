@@ -14,8 +14,6 @@ angular.module('app')
 		var meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 
   
-  		console.log(dia + ' de ' + meses[mes] + ' de ' + ano + '.');
-  
 		return '07 de setembro de 2017.'
 	}
 
