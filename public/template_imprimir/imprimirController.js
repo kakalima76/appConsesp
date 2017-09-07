@@ -27,7 +27,6 @@ angular.module('app')
 		return 'Masculino';
 	}
 
-	//1977-03-26
 	var data = function(data){
 		return data.substring(8,10) + '/' + data.substring(5,7) + '/' + data.substring(0,4)
 	}
@@ -99,7 +98,9 @@ angular.module('app')
 
 	        vm.dataAtual = dataAtual();
 
-
-		//$window.print();
+	    setTimeout(function(){
+	    	$window.print();
+	    },20);
+		
 
 }]);

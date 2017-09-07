@@ -58,8 +58,6 @@ angular.module('app')
 			})
 		})
 
-		console.log(arrayColaboradores);
-
 	}
 
 	vm.imprimir = function(value){
