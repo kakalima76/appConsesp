@@ -1,5 +1,5 @@
 angular.module('app')
-.controller('cadastroController',['$window', 'cpfService', 'cepService', function($window, cpfService, cepService){
+.controller('cadastroController',['$window', 'cpfService', 'cepService', 'consespService', function($window, cpfService, cepService, consespService){
 	var vm = this;
 	vm.cadastro = {}
 	vm.user = $window.localStorage['usuario'];
@@ -8,14 +8,14 @@ angular.module('app')
 
 
 	vm.alertaCPF= function(cpf){
-		console.log(cpfService.validaCPF(cpf))
+		
 		if(!cpfService.validaCPF(cpf)){
 			vm.cadastro.cpf = 'cpf invalido';
 		}
 	}
 
 	vm.alertaPIS= function(pis){
-		console.log(cpfService.validaPIS(pis))
+		
 		if(!cpfService.validaPIS(pis)){
 			vm.cadastro.pispasep = 'pis/pasep invalido';
 		}
@@ -41,15 +41,18 @@ angular.module('app')
 			vm.cadastro.endereco = data.data.logradouro;
 			vm.cadastro.uf = data.data.uf;
 
-			console.log(vm.cadastro);
-
 		})
 	}
 
 	vm.salvar = function(obj){
 
 		vm.cadastro.sexo = obj.sexo.codigo;
-		console.log(obj)
+		var promise = consespService.setColaborador(obj);
+		promise.then(function(data){
+			console.log(data);
+		})
+
+		vm.cadastro = {}
 	}
 
 

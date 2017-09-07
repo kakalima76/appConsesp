@@ -1,10 +1,9 @@
 angular.module('app')
-.controller('loginController', ['$window', 'agentesService', '$location', 'localService', function($window, agentesService, $location, localService){
+.controller('loginController', ['$window', 'agentesService', '$location', function($window, agentesService, $location){
 	var vm = this;
 	vm.showError = false;
 	vm.user = null;
 	vm.pass = null;
-	vm.locais = localService.getLogin();
 
 	function isEmpty(val){
     	return (val === undefined || val == null || val.length <= 0) ? true : false;

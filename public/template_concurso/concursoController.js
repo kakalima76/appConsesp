@@ -1,7 +1,8 @@
 angular.module('app')
-.controller('concursoController', ['$window', function($window){
+.controller('concursoController', ['$window', 'consespService', function($window, consespService){
 	var vm = this;
 	vm.concurso = {}
+	vm.opcoesPeriodo = ['Manha', 'Tarde'];
 	
 	vm.user = $window.localStorage['usuario'];
 	
@@ -38,12 +39,15 @@ angular.module('app')
 	    }	 
 	}
 
-"06/09/2017"
 
 	vm.salvar = function(value){
-		//modelo americano para datas
-		value.data = value.data.substring(6) + '-' + value.data.substring(3,5) + '-' + value.data.substring(0,2);
-		console.log(value);
+
+		var promise = consespService.setConcurso(value);
+		promise
+		.then(function(data){
+			console.log(data);
+		});
+
 		vm.concurso = {};
 	}
 

@@ -1,0 +1,43 @@
+<widget-header titulo = 'Lista de colaboradores'></widget-header>
+<div class="corpo">
+		<nav class="navbar navbar-inverse">
+  			<div class="container">
+		   		<ul class="nav nav-pills">
+		  			<li role="presentation" class="active"><a href="">Cadastro de concursos</a></li>
+                    <li role="presentation"><a href="/#/cadastro">Cadastro de colaborador</a></li>
+                    <li role="presentation"><a href="/#/escala">Escalar colaborador</a></li>
+		  			<li role="presentation" class="active"><a href="/#/listar">Listar colaboradores</a></li>
+                    <li ng-click="vm.logoff()"><a href="/#/" class="logoff">logoff</a></li>
+                    <li role="presentation"><a href="" class="usuario">{{vm.user}}</a></li>
+                    <li role="presentation"><a href="" class="usuario">{{vm.local}}</a></li>
+		  		</ul>
+  			</div>
+		</nav>
+		
+		<form name="myForm">
+        <label class="fonteBranca">Escolha um concurso</label>
+            <select ng-model='vm.lista' class="form-control" ng-options="item.nome for item in vm.opcoes track by item.nome" ng-change="vm.mudar(vm.lista)"></select>
+               
+        </form>
+
+        <div class="corpoProdutos">
+        <table class="tabela">
+                <tr>
+                    <td class="centralizado headerTabela coluna1">cpf</td>
+                    <td class="centralizado headerTabela" >nome</td>
+                    <td class="centralizado headerTabela coluna1" >ação</td>
+                    <td class="centralizado headerTabela coluna1">ação</td>
+                </tr>
+                <tr ng-repeat="campo in vm.listaColaboradores">
+                    <td class="centralizado fundoBranco coluna1">{{campo.cpf}}</td>
+                    <td class="fundoBranco afastamentoTabelaEsquerda">{{campo.nome}}</td>
+                    <td class="centralizado fundoBranco coluna1" ng-click="vm.imprimir(campo.cpf)">imprimir</td>
+                    <td class="centralizado fundoBranco coluna1" ng-click="vm.excluir(campo.cpf)">excluir</td>
+                    
+                </tr>
+        </table>
+    </div>
+
+    	
+
+</div>

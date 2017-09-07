@@ -3,10 +3,10 @@
 		<nav class="navbar navbar-inverse">
   			<div class="container">
 		   		<ul class="nav nav-pills">
-		   			<li role="presentation" class="active"><a href="">Cadastro de Concursos</a></li>
+		   			<li role="presentation" class="active"><a href="">Cadastro de concursos</a></li>
 		  			<li role="presentation"><a href="/#/cadastro">Cadastro de colaborador</a></li>
-		  			<li role="presentation"><a href="/#/estatisticas">Gerar estatísticas</a></li>
-		  			<li role="presentation"><a href="/#/lacres">Buscar lacre</a></li>
+		  			<li role="presentation"><a href="/#/escala">Escalar colaborador</a></li>
+		  			<li role="presentation"><a href="/#/lista">Listar colaboradores</a></li>
 		  			<li ng-click="vm.logoff()"><a href="/#/" class="logoff">logoff</a></li>
 		  			<li role="presentation"><a href="" class="usuario">{{vm.user}}</a></li>
 		  			<li role="presentation"><a href="" class="usuario">{{vm.local}}</a></li>
@@ -21,11 +21,13 @@
 
     		
     		<label class="fonteBranca">Data</label>
-    		<input class="form-control"  placeholder="data" ng-model='vm.concurso.data' datepicker>
+    		<input class="form-control"  placeholder="data" ng-model='vm.concurso.data'>
 
+    		<label class="fonteBranca">Período</label>
+            <select ng-model='vm.concurso.periodo' class="form-control" ng-options="item for item in vm.opcoesPeriodo track by item"></select>
 
 			<div class="corpoProdutos fonteBranca">
-				<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.salvar(vm.concurso)">Salvar auto</button>
+				<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.salvar(vm.concurso)">Salvar cadastro</button>
 			</div>
 
 		</div>

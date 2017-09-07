@@ -115,13 +115,13 @@ header{
 .tabela{
   border-style: solid;
   border-width: 1px;
-  border-color: white;
+  border-color: black;
   width: 100%;
 }
 
 td{
   border-style: solid;
-  border-color: white;
+  border-color: black;
   border-width: 1px;
   vertical-align: middle;
   width: 20%;
@@ -129,7 +129,7 @@ td{
 
 tr{
   border-style: solid;
-  border-color: white;
+  border-color: black;
   border-width: 1px;
 }
 
@@ -267,4 +267,16 @@ tr{
 
 .usuario{
   color: green;
+}
+
+.coluna1{
+  width: 10%;
+}
+
+.fundoBranco{
+  background-color: white;
+}
+
+.afastamentoTabelaEsquerda {
+  padding-left: 5px;
 }

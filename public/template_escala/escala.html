@@ -1,0 +1,43 @@
+<widget-header titulo = 'Escalar colaborador'></widget-header>
+<div class="corpo">
+		<nav class="navbar navbar-inverse">
+  			<div class="container">
+		   		<ul class="nav nav-pills">
+		  			<li role="presentation"><a href="/#/concursos">Cadastro de concursos</a></li>
+		  			<li role="presentation"><a href="/#/cadastro">Cadastro de colaborador</a></li>
+		  			<li role="presentation" class="active"><a href="">Escalar colaborador</a></li>
+		  		<li role="presentation"><a href="/#/lista">Listar colaboradores</a></li>
+                    <li ng-click="vm.logoff()"><a href="/#/" class="logoff">logoff</a></li>
+                    <li role="presentation"><a href="" class="usuario">{{vm.user}}</a></li>
+		  		</ul>
+  			</div>
+		</nav>
+		
+		<form name="myForm">
+		<label class="fonteBranca">Escolha um concurso</label>
+            <select ng-model='vm.concursoAtual' class="form-control" ng-options="item.nome for item in vm.opcoes track by item.nome" ng-change="vm.mudar(vm.concursoAtual)"></select>
+
+        <div class="inputBox">
+    		<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.buscar(vm.colaboradores)">Buscar colaboradores para o concurso</button>
+    	</div>
+    	
+
+    	<div class="fonteBranca inputBox" ng-repeat="colaborador in vm.colaboradores">
+    		<div class="row">
+              <div class="col-lg-6">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <input type="checkbox" aria-label="Checkbox for following text input" ng-model="colaborador.escolhido">
+                  </span>
+                  <input type="text" class="form-control" aria-label="Text input with checkbox" ng-model="colaborador.nome">
+                </div>
+              </div>
+            </div>
+		</div>
+    </form>
+
+         <div class="inputBox">
+            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.salvar(vm.colaboradores)">Confirmar colaboradores para o concurso</button>
+        </div>
+
+</div>

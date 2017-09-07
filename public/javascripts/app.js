@@ -32,9 +32,9 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 		}*/
 	})
 
-	.when('/estatisticas', {
-		templateUrl: 'template_estatistica/estatistica.html',
-		controller: 'estatisticaController',
+	.when('/escala', {
+		templateUrl: 'template_escala/escala.html',
+		controller: 'escalaController',
 		controllerAs: 'vm'/*,
 		resolve:{
 			auth: ['authService', '$window', function(authService, $window){
@@ -44,9 +44,9 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 		}*/
 	})
 
-	.when('/lacres', {
-		templateUrl: 'template_lacre/lacre.html',
-		controller: 'lacreController',
+	.when('/lista', {
+		templateUrl: 'template_lista/lista.html',
+		controller: 'listaController',
 		controllerAs: 'vm'/*,
 		resolve:{
 			auth: ['authService', '$window', function(authService, $window){
