@@ -5,16 +5,16 @@ angular.module('app')
 	var local = 'LOCAL DE TESTE';
 
 
-	var dataAtual = function(){
-		var dt = new Date();
-		var dia = dt.getDate();
-		var mes = dt.getMonth();
-		var ano = dt.getFullYear();
+	var dataAtual = function(data){
+		
+		var dia = data.substring(8)
+		var mes = parseInt(data.substring(5,7)) - 1;
+		var ano = data.substring(0,4);
 
 		var meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 
   
-		return '07 de setembro de 2017.'
+		return dia + ' de ' + meses[mes] + ' de ' + ano + '.';
 	}
 
 	var genero = function(sexo){
@@ -33,18 +33,18 @@ angular.module('app')
     var pagamento = function(valor){
          vm.funcoes = 
             [
-                {'funcao': 'Fiscal', 'valor': 80, 'extenso': '(oitenta reais)'},
-                {'funcao': 'Fiscal de Detector', 'valor': 80, 'extenso': '(oitenta reais)'},
-                {'funcao': 'Apoio', 'valor': 80, 'extenso': '(oitenta reais)'},
-                {'funcao': 'Bombeiro Hidráulico', 'valor': 300, 'extenso': '(trezentos reais)'},
-                {'funcao': 'Fiscal Volante', 'valor': 80, 'extenso': '(oitenta reais)'},
-                {'funcao': 'Coordenador', 'valor': 600, 'extenso': '(seiscentos reais)'}, 
-                {'funcao': 'Auxiliar de Coordenação', 'valor': 300, 'extenso': '(trezentos reais)'}, 
-                {'funcao': 'Administrador', 'valor': 560, 'extenso': '(quinhentos e sessenta reais)'},
+                {'funcao': 'Fiscal', 'valor': '80,00', 'extenso': '(oitenta reais)'},
+                {'funcao': 'Fiscal de Detector', 'valor': '80,00', 'extenso': '(oitenta reais)'},
+                {'funcao': 'Apoio', 'valor': '80,00', 'extenso': '(oitenta reais)'},
+                {'funcao': 'Bombeiro Hidráulico', 'valor': '300,00', 'extenso': '(trezentos reais)'},
+                {'funcao': 'Fiscal Volante', 'valor': '80,00', 'extenso': '(oitenta reais)'},
+                {'funcao': 'Coordenador', 'valor': '600,00', 'extenso': '(seiscentos reais)'}, 
+                {'funcao': 'Auxiliar de Coordenação', 'valor': '300,00', 'extenso': '(trezentos reais)'}, 
+                {'funcao': 'Administrador', 'valor': '560,00', 'extenso': '(quinhentos e sessenta reais)'},
                 {'funcao': 'Chefe de Local', 'valor': 0},
                 {'funcao': 'Representante', 'valor': 0},
-                {'funcao': 'Eletricista', 'valor': 300, 'extenso': '(trezentos reais)'} ,
-                {'funcao': 'Porteiro', 'valor': 80, 'extenso': '(oitenta reais)'},
+                {'funcao': 'Eletricista', 'valor': '300,00', 'extenso': '(trezentos reais)'} ,
+                {'funcao': 'Porteiro', 'valor': '80,00', 'extenso': '(oitenta reais)'},
                 {'funcao': 'Interprete de libras', 'valor': 0}
             ]
 
@@ -60,7 +60,6 @@ angular.module('app')
 
 		vm.cadastro = cadastroFactory.get();
 		
-
 		vm.linha1 = 'Nome completo: ' + vm.cadastro.nome;
 		vm.linha2 = 'Data de nascimento:  ' + data(vm.cadastro.nascimento) 
 										    + '   Sexo:   ' + genero(vm.cadastro.sexo)
@@ -94,7 +93,7 @@ angular.module('app')
 	        vm.declaracao += ' e com os canditados inscritos no certame, bem como não ministra';
 	        vm.declaracao += ' aulas em cursos preparatórios relativos ao processo em questão'  + '.';
 
-	        vm.dataAtual = dataAtual();
+	        vm.dataAtual = dataAtual(vm.cadastro.data);
 
 	    setTimeout(function(){
 	    	$window.print();

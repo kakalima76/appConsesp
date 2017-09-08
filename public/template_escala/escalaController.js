@@ -1,17 +1,82 @@
 angular.module('app')
-.controller('escalaController', ['$window', 'consespService',function($window, consespService){
+.controller('escalaController', ['$window', 'consespService', '$filter',  function($window, consespService, $filter){
 	var vm = this;
 	vm.user = $window.localStorage['usuario'];
 	vm.colaboradores = [];
 	var arrayDeColaboradores = [];
 	vm.concursoAtual = {}
+	var arrayDeConcursos = [];
 
 	var promise = consespService.getConcursos();
 	promise.then(function(data){
 		vm.opcoes = data.data;
+
+		//utilizada para criar uma forma de evitar que
+		//um candidato já selecionado apareça novamente
+		//para ser escolhido
+		vm.opcoes.forEach(function(concurso){
+		var obj = {}
+		obj.nome = concurso.nome;
+		obj.data = concurso.data;
+		arrayDeConcursos.push(obj);
+		})
+
 	});
 
 
+	
+	var equals = function( x, y ) {
+    // If both x and y are null or undefined and exactly the same
+    if ( x === y ) {
+        return true;
+    }
+
+    // If they are not strictly equal, they both need to be Objects
+    if ( ! ( x instanceof Object ) || ! ( y instanceof Object ) ) {
+        return false;
+    }
+
+    // They must have the exact same prototype chain, the closest we can do is
+    // test the constructor.
+    if ( x.constructor !== y.constructor ) {
+        return false;
+    }
+
+    for ( var p in x ) {
+        // Inherited properties were tested using x.constructor === y.constructor
+        if ( x.hasOwnProperty( p ) ) {
+            // Allows comparing x[ p ] and y[ p ] when set to undefined
+            if ( ! y.hasOwnProperty( p ) ) {
+                return false;
+            }
+
+            // If they have the same strict value or identity then they are equal
+            if ( x[ p ] === y[ p ] ) {
+                continue;
+            }
+
+            // Numbers, Strings, Functions, Booleans must be strictly equal
+            if ( typeof( x[ p ] ) !== "object" ) {
+                return false;
+            }
+
+            // Objects and Arrays must be tested recursively
+            if ( !equals( x[ p ],  y[ p ] ) ) {
+                return false;
+            }
+        }
+    }
+
+    for ( p in y ) {
+        // allows x[ p ] to be set to undefined
+        if ( y.hasOwnProperty( p ) && ! x.hasOwnProperty( p ) ) {
+            return false;
+        }
+    }
+    return true;
+}
+
+	
 	vm.funcoes = 
 	[
 		{'funcao': 'Fiscal', 'valor': 0},
@@ -68,16 +133,29 @@ angular.module('app')
 		if(value.data){
 			var promiseColaboradores = consespService.getColaboradores();
 			promiseColaboradores.then(function(data){
-			
-				data.data.forEach(function(cadastro){
-					
+				
+				data.data.forEach(function(cadastro, index){
 					if(cadastro.concursos.length > 0){
+						var arrayCompara = [];
+						var tamanho = cadastro.concursos.length;
+						cadastro.nome = $filter('uppercase')(cadastro.nome)
 
 						cadastro.concursos.forEach(function(concurso){
-
-							if(concurso.nome !== value.nome){
-								vm.colaboradores.push(cadastro);
-							}
+							
+							var obj = {}
+							
+							obj.nome = concurso.nome;
+							obj.data = concurso.data;
+							arrayCompara.push(obj);
+							
+							
+								if(!equals(arrayCompara, arrayDeConcursos) && tamanho < arrayDeConcursos.length){
+									
+									if(concurso.nome !== value.nome){
+										vm.colaboradores.push(cadastro);
+									}
+								}
+							
 						})
 
 					}else{

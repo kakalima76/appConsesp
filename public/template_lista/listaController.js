@@ -5,6 +5,16 @@ angular.module('app')
 	vm.user = $window.localStorage['usuario'];
 	vm.listaColaboradores = [];
 
+	function compareNome(a,b) {
+	  	if(a.nome < b.nome){
+	  		return -1;
+	  	}else if (a.nome > b.nome){
+	  		return 1;
+	  	}else{
+	  		return 0;
+	    }	 
+	}
+
 	var promise = consespService.getConcursos();
 	promise.then(function(data){
 		vm.opcoes = data.data;
@@ -13,6 +23,7 @@ angular.module('app')
 	var promise2 = consespService.getColaboradores();
 	promise2.then(function(data){
 		arrayColaboradores = data.data;
+		arrayColaboradores.sort(compareNome);
 	})
 	
 	function isEmpty(val){
@@ -54,6 +65,7 @@ angular.module('app')
 					vm.listaColaboradores.push(cadastro);
 					cadastro.funcao = concurso.funcao;
 					cadastro.local = vm.lista.nome;
+					cadastro.data = concurso.data;
 				}
 			})
 		})
