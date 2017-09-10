@@ -61,8 +61,7 @@ angular.module('app')
 		vm.cadastro = cadastroFactory.get();
 		
 		vm.linha1 = 'Nome completo: ' + vm.cadastro.nome;
-		vm.linha2 = 'Data de nascimento:  ' + data(vm.cadastro.nascimento) 
-										    + '   Sexo:   ' + genero(vm.cadastro.sexo)
+		vm.linha2 = 'Nasc.:  ' + data(vm.cadastro.nascimento) 
 										    + '   Identidade:   ' + vm.cadastro.idt
 										    + '   Órgão expeditor:  ' + vm.cadastro.emissor
 										    + '   Data de expedição: ' + data(vm.cadastro.dataEmissao);
