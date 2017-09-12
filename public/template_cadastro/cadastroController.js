@@ -8,16 +8,18 @@ angular.module('app')
 
 
 	vm.alertaCPF= function(cpf){
-		
-		if(!cpfService.validaCPF(cpf)){
-			vm.cadastro.cpf = 'cpf invalido';
+		if(!isEmpty(cpf)){
+			if(!cpfService.validaCPF(cpf)){
+				vm.cadastro.cpf = 'cpf invalido';
+			}
 		}
 	}
 
 	vm.alertaPIS= function(pis){
-		
-		if(!cpfService.validaPIS(pis)){
+		if(!isEmpty(pis)){
+			if(!cpfService.validaPIS(pis)){
 			vm.cadastro.pispasep = 'pis/pasep invalido';
+			}
 		}
 	}
 
@@ -46,14 +48,43 @@ angular.module('app')
 
 	vm.salvar = function(obj){
 
-		vm.cadastro.sexo = obj.sexo.codigo;
-		var promise = consespService.setColaborador(obj);
-		promise.then(function(data){
-			console.log(data);
-		})
+		if(cpfService.validaCPF(obj.cpf) && cpfService.validaPIS(obj.pispasep)){
 
-		vm.cadastro = {}
+			if(!obj.sexo){
+				obj.sexo = 0;
+			}
+
+			if(!isEmpty(obj.cpf) && !isEmpty(obj.pispasep) && !isEmpty(obj.nome))
+			{
+				if(isEmpty(obj.dataEmissao)){
+					obj.dataEmissao = '2017-01-01';
+				}
+
+				if(isEmpty(obj.nascimento)){
+					obj.nascimento = '2017-01-01';
+				}
+
+				vm.cadastro.sexo = obj.sexo.codigo;
+				var promise = consespService.setColaborador(obj);
+				promise
+				.then(function(data){
+				$window.alert('Ok');
+				vm.cadastro = {}
+				})
+
+				.catch(function(err){
+					console.log(err);
+				})
+
+			}else{
+				$window.alert('Preencha os três primeiros campos do formulário!')
+			}
+			
+
+	}else{
+		$window.alert('CPF e PIS/PASEP válidos são requeridos');
 	}
 
+}
 
 }]);

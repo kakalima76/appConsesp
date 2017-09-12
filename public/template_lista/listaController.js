@@ -23,7 +23,6 @@ angular.module('app')
 	var promise2 = consespService.getColaboradores();
 	promise2.then(function(data){
 		arrayColaboradores = data.data;
-		arrayColaboradores.sort(compareNome);
 	})
 	
 	function isEmpty(val){
@@ -60,12 +59,13 @@ angular.module('app')
 
 		vm.listaColaboradores = [];
 		arrayColaboradores.forEach(function(cadastro){
+			vm.listaColaboradores.sort(compareNome);
 			cadastro.concursos.forEach(function(concurso){
 				if(concurso.nome === obj.nome){
-					vm.listaColaboradores.push(cadastro);
 					cadastro.funcao = concurso.funcao;
 					cadastro.local = vm.lista.nome;
 					cadastro.data = concurso.data;
+					vm.listaColaboradores.push(cadastro);
 				}
 			})
 		})

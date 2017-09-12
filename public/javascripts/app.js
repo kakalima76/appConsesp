@@ -71,7 +71,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 	.otherwise({redirectTo: '/'});
 
 	$locationProvider.html5Mode({
-  		enabled: true,
+  		enabled: false,
   		requireBase: false
 	});
 

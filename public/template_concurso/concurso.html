@@ -17,14 +17,21 @@
 	<form name="myForm">
 		<div class="form-group">
     		<label class="fonteBranca">Nome do concurso</label>
-    		<input type="text" class="form-control" placeholder="número do auto de apreensão" ng-model='vm.concurso.nome'>
+    		<input type="text" class="form-control" placeholder="nome do concurso" ng-model='vm.concurso.nome' ng-change="vm.upperNome()">
 
     		
     		<label class="fonteBranca">Data</label>
-    		<input class="form-control"  placeholder="data" ng-model='vm.concurso.data'>
+    		<input class="form-control"  placeholder="data" ng-model='vm.concurso.data' datepicker>
 
     		<label class="fonteBranca">Período</label>
             <select ng-model='vm.concurso.periodo' class="form-control" ng-options="item for item in vm.opcoesPeriodo track by item"></select>
+
+            <label class="fonteBranca">Empresa</label>
+            <select ng-model='vm.concurso.empresa' class="form-control" ng-options="item.nome for item in vm.empresas track by item.cnpj"></select>
+
+            <label class="fonteBranca">Quantidade de colaboradores</label>
+    		<input type="number" class="form-control"  placeholder="quantidade de colaboradores" ng-model='vm.concurso.quantidade'>
+
 
 			<div class="corpoProdutos fonteBranca">
 				<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.salvar(vm.concurso)">Salvar cadastro</button>

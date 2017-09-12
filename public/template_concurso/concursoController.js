@@ -1,13 +1,13 @@
 angular.module('app')
-.controller('concursoController', ['$window', 'consespService', function($window, consespService){
+.controller('concursoController', ['$window', 'consespService', '$filter', function($window, consespService, $filter){
 	var vm = this;
 	vm.concurso = {}
-	vm.opcoesPeriodo = ['Manha', 'Tarde'];
-	
+	vm.opcoesPeriodo = ['Manhã', 'Tarde', 'Integral'];
+	vm.empresas = [{nome: 'CONSESP - CONSULTORIA EM CONCURSOS E PESQUISAS SOCIAIS', cnpj: '07.056.558/0001-38'}]
 	vm.user = $window.localStorage['usuario'];
+	vm.myDate = new Date();
+  	vm.isOpen = false;
 	
-
-
 	vm.logoff = function(){
 		$window.localStorage.removeItem('usuario');
 	}
@@ -39,19 +39,47 @@ angular.module('app')
 	    }	 
 	}
 
+	vm.upperNome = function(){
+		vm.concurso.nome = $filter('uppercase')(vm.concurso.nome);
+	}
 
 	vm.salvar = function(value){
 
-		var promise = consespService.setConcurso(value);
-		promise
-		.then(function(data){
-			console.log(data);
-		});
+		if 
+		(
+			!isEmpty(value.nome) &&
+			!isEmpty(value.data) &&
+			!isEmpty(value.periodo) &&
+			!isEmpty(value.empresa) &&
+			!isEmpty(value.quantidade) 
+		)
+			{
+				value.data = value.data.substring(6) + '-' + value.data.substring(3,5) + '-' + value.data.substring(0,2);
+				value.nome = value.nome + '/' + value.data.substring(0,4) + ' - ' + value.periodo;
+				value.cnpj = value.empresa.cnpj;
+				value.empresa = value.empresa.nome;
 
-		vm.concurso = {};
-	}
+		
+				var promise = consespService.setConcurso(value);
+				promise
+				.then(function(data){
+					$window.alert('Ok');
+					vm.concurso = {};
+				})
 
+				.catch(function(err){
+					console.log(err);
+				})
+			}else{
+				$window.alert('Preencha todos os campos!!')
+			}
+
+		
+
+		
+		
 	
+	}
 
 }]);
 

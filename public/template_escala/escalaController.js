@@ -135,35 +135,15 @@ angular.module('app')
 			promiseColaboradores.then(function(data){
 				
 				data.data.forEach(function(cadastro, index){
-					if(cadastro.concursos.length > 0){
-						var arrayCompara = [];
-						var tamanho = cadastro.concursos.length;
-						cadastro.nome = $filter('uppercase')(cadastro.nome)
-
-						cadastro.concursos.forEach(function(concurso){
-							
-							var obj = {}
-							
-							obj.nome = concurso.nome;
-							obj.data = concurso.data;
-							arrayCompara.push(obj);
-							
-							
-								if(!equals(arrayCompara, arrayDeConcursos) && tamanho < arrayDeConcursos.length){
-									
-									if(concurso.nome !== value.nome){
-										vm.colaboradores.push(cadastro);
-									}
-								}
-							
-						})
-
-					}else{
+					cadastro.nome = $filter('uppercase')(cadastro.nome);
+					var index = cadastro.concursos.findIndex(i => i.nome === value.nome);
+					if(index === -1)
+					{
 						vm.colaboradores.push(cadastro);
+						vm.colaboradores.sort(compareNome);
 					}
 						
 				})
-
 			});
 
 		}else{

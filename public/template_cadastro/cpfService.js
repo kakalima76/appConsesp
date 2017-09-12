@@ -2,6 +2,7 @@ angular.module('app')
 .service('cpfService', ['$http', function($http){
 
 	var validaCPF = function(strCPF) {
+    var strCPF = strCPF.replace(/[^\d]+/g, '');
     var Soma;
     var Resto;
     Soma = 0;
