@@ -76,6 +76,8 @@ angular.module('app')
 					console.log(err);
 				})
 
+				vm.cadastro = {}
+
 			}else{
 				$window.alert('Preencha os três primeiros campos do formulário!')
 			}
