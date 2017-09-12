@@ -65,17 +65,26 @@ angular.module('app')
 					if(concurso.nome === obj.nome){
 						cadastro.funcao = concurso.funcao;
 						cadastro.local = vm.lista.nome;
+						cadastro.funcaoFormatada = concurso.funcao.replace(/( )/g, "%20");
+						cadastro.localFormatada = vm.lista.nome.replace(/( )/g, "%20");
 						cadastro.data = concurso.data;
 						vm.listaColaboradores.push(cadastro);
+
 					}
+
+					vm.listaColaboradores.sort(compareNome);
 				})
 			})
+
 		})
+
+
 	}
 
 	vm.imprimir = function(value){
 		cadastroFactory.set(value);
-		$location.path('imprimir');
+		//$location.path('imprimir');
+		console.log(value);
 	}
 
 	vm.excluir = function(value){

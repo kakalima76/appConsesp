@@ -1,8 +1,12 @@
 angular.module('app')
-.controller('imprimirController',['$window', 'cadastroFactory', function($window, cadastroFactory){
+.controller('imprimirController',['$window', 'cadastroFactory', '$routeParams', 'consespService', function($window, cadastroFactory, $routeParams, consespService){
 	var vm = this;
 	var valor = 100;
 	var local = 'LOCAL DE TESTE';
+
+    console.log($routeParams._id);
+    console.log($routeParams.funcao);
+    console.log($routeParams.local);
 
 
 	var dataAtual = function(data){
@@ -75,45 +79,54 @@ angular.module('app')
     }
 
 
-		vm.cadastro = cadastroFactory.get();
-		
-		vm.linha1 = 'Nome completo: ' + vm.cadastro.nome;
-		vm.linha2 = 'Nasc.:  ' + data(vm.cadastro.nascimento) 
-										    + '   Identidade:   ' + vm.cadastro.idt
-										    + '   Órgão expeditor:  ' + vm.cadastro.emissor
-										    + '   Data de expedição: ' + data(vm.cadastro.dataEmissao);
-        vm.linha3 = 'CPF: ' + vm.cadastro.cpf
-        					+ ' PIS/PASEP: ' + vm.cadastro.pispasep
-        					+ ' Estado civil: ' + vm.cadastro.estadoCivil;
+        var promise = consespService.getColaboradores();
+        promise.then(function(array){
+           var index = array.data.findIndex(i => i._id === $routeParams._id);
+           console.log(index);
+           console.log(array.data);
+           console.log(array.data[index]);
+           vm.cadastro = array.data[index];
+           vm.cadastro.local = $routeParams.local;
+           vm.cadastro.funcao = $routeParams.funcao;
+           console.log(vm.cadastro);
 
-        vm.linha4 = 'Endereço: ' + vm.cadastro.endereco;
-        vm.linha5 = 'Bairro: '  + vm.cadastro.bairro
-        						+ ' Cidade: ' + vm.cadastro.municipio
-        						+ ' CEP: ' + vm.cadastro.cep
-        						+ ' UF: ' + vm.cadastro.uf;
+            vm.linha1 = 'Nome completo: ' + vm.cadastro.nome;
+            vm.linha2 = 'Nasc.:  ' + data(vm.cadastro.nascimento) 
+                                                + '   Identidade:   ' + vm.cadastro.idt
+                                                + '   Órgão expeditor:  ' + vm.cadastro.emissor
+                                                + '   Data de expedição: ' + data(vm.cadastro.dataEmissao);
+            vm.linha3 = 'CPF: ' + vm.cadastro.cpf
+                                + ' PIS/PASEP: ' + vm.cadastro.pispasep
+                                + ' Estado civil: ' + vm.cadastro.estadoCivil;
+
+            vm.linha4 = 'Endereço: ' + vm.cadastro.endereco;
+            vm.linha5 = 'Bairro: '  + vm.cadastro.bairro
+                                    + ' Cidade: ' + vm.cadastro.municipio
+                                    + ' CEP: ' + vm.cadastro.cep
+                                    + ' UF: ' + vm.cadastro.uf;
 
 
-        
+            
 
-        vm.linha6 = 'Contato:' + vm.cadastro.contato + ' E-mail: ' + vm.cadastro.email; 
+            vm.linha6 = 'Contato:' + vm.cadastro.contato + ' E-mail: ' + vm.cadastro.email; 
 
-	        vm.pagamento = 'Recebi da CONSESP - CONSULTORIA EM CONCURSOS E PESQUISAS SOCIAIS, empresa inscrita no CNPJ  sob o número ';
-	        vm.pagamento += ' 07.056.558/0001-38⁠⁠⁠⁠, a importância líquida de  R$ ' +  pagamento(vm.cadastro.funcao);
-	        vm.pagamento += ' por serviços prestados de ' + vm.cadastro.funcao
-	        vm.pagamento += ' do exame da(o) ' +  vm.cadastro.local + '.';
+                vm.pagamento = 'Recebi da CONSESP - CONSULTORIA EM CONCURSOS E PESQUISAS SOCIAIS, empresa inscrita no CNPJ  sob o número ';
+                vm.pagamento += ' 07.056.558/0001-38⁠⁠⁠⁠, a importância líquida de  R$ ' +  pagamento(vm.cadastro.funcao);
+                vm.pagamento += ' por serviços prestados de ' + vm.cadastro.funcao
+                vm.pagamento += ' do exame da(o) ' +  vm.cadastro.local + '.';
 
-	        vm.declaracao = 'O signatário da presente, abaixo qualificado, declara, ';
-	        vm.declaracao += ' sob as penas da lei, que não possui qualquer grau de ';
-	        vm.declaracao += ' parentesco em até terceiro grau, seja por consanguinidade ou ';
-	        vm.declaracao += ' por afinidade, com os membros do(a) ' + vm.cadastro.local ;
-	        vm.declaracao += ' e com os canditados inscritos no certame, bem como não ministra';
-	        vm.declaracao += ' aulas em cursos preparatórios relativos ao processo em questão'  + '.';
+                vm.declaracao = 'O signatário da presente, abaixo qualificado, declara, ';
+                vm.declaracao += ' sob as penas da lei, que não possui qualquer grau de ';
+                vm.declaracao += ' parentesco em até terceiro grau, seja por consanguinidade ou ';
+                vm.declaracao += ' por afinidade, com os membros do(a) ' + vm.cadastro.local ;
+                vm.declaracao += ' e com os canditados inscritos no certame, bem como não ministra';
+                vm.declaracao += ' aulas em cursos preparatórios relativos ao processo em questão'  + '.';
 
-	        vm.dataAtual = dataAtual(vm.cadastro.data);
+                vm.dataAtual = dataAtual(vm.cadastro.data);
 
-	    setTimeout(function(){
-	    	$window.print();
-	    },20);
-		
+                
+            })
 
+
+	
 }]);

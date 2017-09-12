@@ -55,7 +55,7 @@ angular.module('app')
 		)
 			{
 				value.data = value.data.substring(6) + '-' + value.data.substring(3,5) + '-' + value.data.substring(0,2);
-				value.nome = value.nome + '/' + value.data.substring(0,4) + ' - ' + value.periodo;
+				value.nome = value.nome + '(' + value.data.substring(0,4) + ')' +  ' - ' +  value.periodo;
 				value.cnpj = value.empresa.cnpj;
 				value.empresa = value.empresa.nome;
 

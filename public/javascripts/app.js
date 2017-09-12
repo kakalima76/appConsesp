@@ -56,7 +56,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 		}*/
 	})
 
-	.when('/imprimir', {
+	.when('/imprimir/:_id/:funcao/:local', {
 		templateUrl: 'template_imprimir/imprimir.html',
 		controller: 'imprimirController',
 		controllerAs: 'vm'/*,
