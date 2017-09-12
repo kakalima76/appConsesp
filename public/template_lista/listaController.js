@@ -4,6 +4,8 @@ angular.module('app')
 	var arrayColaboradores;
 	vm.user = $window.localStorage['usuario'];
 	vm.listaColaboradores = [];
+	vm.contador = 0;
+	vm.classe = 'alert alert-success';
 
 	var lista = document.getElementById("lista");
 	lista.selectedIndex = 1;
@@ -44,6 +46,14 @@ angular.module('app')
 	    }	 
 	}
 
+	var testaQuantidade = function(){
+		if(vm.contador >= vm.lista.quantidade){
+				vm.classe = "alert alert-danger";
+		}else{
+				vm.classe = 'alert alert-success';
+		}
+	}
+
 
 	function isEmpty(val){
     	return (val === undefined || val == null || val.length <= 0) ? true : false;
@@ -73,8 +83,13 @@ angular.module('app')
 					}
 
 					vm.listaColaboradores.sort(compareNome);
+					
 				})
 			})
+
+			vm.listaColaboradores.forEach(i => vm.contador++);
+			testaQuantidade();
+			
 
 		})
 
@@ -106,6 +121,8 @@ angular.module('app')
 			if(data.status === 200){
 					var index = vm.listaColaboradores.findIndex(i => i.nome === value.nome);
 					vm.listaColaboradores.splice(index, 1);
+					vm.contador--;
+					testaQuantidade();
 			}
 						
 		})
