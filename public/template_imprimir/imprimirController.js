@@ -34,18 +34,35 @@ angular.module('app')
          vm.funcoes = 
             [
                 {'funcao': 'Fiscal', 'valor': '80,00', 'extenso': '(oitenta reais)'},
+                {'funcao': 'Fiscal Integral', 'valor': '160,00', 'extenso': '(cento e sessenta reais)'},
                 {'funcao': 'Fiscal de Detector', 'valor': '80,00', 'extenso': '(oitenta reais)'},
+                {'funcao': 'Fiscal de Detector Integral', 'valor': '160,00', 'extenso': '(cento e sessenta reais)'},
                 {'funcao': 'Apoio', 'valor': '80,00', 'extenso': '(oitenta reais)'},
+                {'funcao': 'Apoio Integral', 'valor': '160,00', 'extenso': '(cento e sessenta reais)'},
                 {'funcao': 'Bombeiro Hidráulico', 'valor': '300,00', 'extenso': '(trezentos reais)'},
+                {'funcao': 'Bombeiro Hidráulico Integral', 'valor': '600,00', 'extenso': '(seiscentos reais)'},
                 {'funcao': 'Fiscal Volante', 'valor': '80,00', 'extenso': '(oitenta reais)'},
-                {'funcao': 'Coordenador', 'valor': '600,00', 'extenso': '(seiscentos reais)'}, 
-                {'funcao': 'Auxiliar de Coordenação', 'valor': '300,00', 'extenso': '(trezentos reais)'}, 
+                {'funcao': 'Fiscal Volante Integral', 'valor': '160,00', 'extenso': '(cento e sessenta reais)'},
+                {'funcao': 'Coordenador', 'valor': '600,00', 'extenso': '(seiscentos reais)'},
+                {'funcao': 'Coordenador Integral', 'valor': '1200,00', 'extenso': '(hum mil e duzentos reais)'}, 
+                {'funcao': 'Auxiliar de Coordenação', 'valor': '300,00', 'extenso': '(trezentos reais)'},
+                {'funcao': 'Auxiliar de Coordenação Integral', 'valor': '600,00', 'extenso': '(seiscentos reais)'},
+                {'funcao': 'Auxiliar', 'valor': '300,00', 'extenso': '(trezentos reais)'},
+                {'funcao': 'Auxiliar Integral', 'valor': '600,00', 'extenso': '(seiscentos reais)'}, 
                 {'funcao': 'Administrador', 'valor': '560,00', 'extenso': '(quinhentos e sessenta reais)'},
+                {'funcao': 'Administrador Integral', 'valor': '1.120,00', 'extenso': '(hum mil cento e vinte reais)'},
                 {'funcao': 'Chefe de Local', 'valor': 0},
+                {'funcao': 'Chefe de Local Integral', 'valor': 0},
                 {'funcao': 'Representante', 'valor': 0},
-                {'funcao': 'Eletricista', 'valor': '300,00', 'extenso': '(trezentos reais)'} ,
+                {'funcao': 'Representante Integral', 'valor': 0},
+                {'funcao': 'Eletricista', 'valor': '300,00', 'extenso': '(trezentos reais)'},
+                {'funcao': 'Eletricista Integral', 'valor': '600,00', 'extenso': '(seiscentos reais)'},
                 {'funcao': 'Porteiro', 'valor': '80,00', 'extenso': '(oitenta reais)'},
-                {'funcao': 'Interprete de libras', 'valor': 0}
+                {'funcao': 'Porteiro Integral', 'valor': '160,00', 'extenso': '(cento e sessenta reais)'},
+   				{'funcao': 'Interprete de libras', 'valor': '120,00', 'extenso': '(cento e vinte reais)'},
+   				{'funcao': 'Interprete de libras Integral', 'valor': '240,00', 'extenso': '(duzentos e quarenta reais)'},
+                {'funcao': 'Enfermeiro', 'valor': '120,00', 'extenso': '(cento e vinte reais)'},
+                {'funcao': 'Enfermeiro Integral','valor': '240,00', 'extenso': '(duzentos e quarenta reais)'}
             ]
 
         var filtro = function(value){

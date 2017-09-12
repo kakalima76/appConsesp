@@ -24,7 +24,31 @@ angular.module('app')
 	});
 
 
-	
+	String.prototype.extenso = function(c){
+    var ex = [
+        ["zero", "um", "dois", "tr?s", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze", "quatorze", "quinze", "dezesseis", "dezessete", "dezoito", "dezenove"],
+        ["dez", "vinte", "trinta", "quarenta", "cinq?enta", "sessenta", "setenta", "oitenta", "noventa"],
+        ["cem", "cento", "duzentos", "trezentos", "quatrocentos", "quinhentos", "seiscentos", "setecentos", "oitocentos", "novecentos"],
+        ["mil", "milh?o", "bilh?o", "trilh?o", "quadrilh?o", "quintilh?o", "sextilh?o", "setilh?o", "octilh?o", "nonilh?o", "decilh?o", "undecilh?o", "dodecilh?o", "tredecilh?o", "quatrodecilh?o", "quindecilh?o", "sedecilh?o", "septendecilh?o", "octencilh?o", "nonencilh?o"]
+    ];
+    var a, n, v, i, n = this.replace(c ? /[^,\d]/g : /\D/g, "").split(","), e = " e ", $ = "real", d = "centavo", sl;
+    for(var f = n.length - 1, l, j = -1, r = [], s = [], t = ""; ++j <= f; s = []){
+        j && (n[j] = (("." + n[j]) * 1).toFixed(2).slice(2));
+        if(!(a = (v = n[j]).slice((l = v.length) % 3).match(/\d{3}/g), v = l % 3 ? [v.slice(0, l % 3)] : [], v = a ? v.concat(a) : v).length) continue;
+        for(a = -1, l = v.length; ++a < l; t = ""){
+            if(!(i = v[a] * 1)) continue;
+            i % 100 < 20 && (t += ex[0][i % 100]) ||
+            i % 100 + 1 && (t += ex[1][(i % 100 / 10 >> 0) - 1] + (i % 10 ? e + ex[0][i % 10] : ""));
+            s.push((i < 100 ? t : !(i % 100) ? ex[2][i == 100 ? 0 : i / 100 >> 0] : (ex[2][i / 100 >> 0] + e + t)) +
+            ((t = l - a - 2) > -1 ? " " + (i > 1 && t > 0 ? ex[3][t].replace("?o", "?es") : ex[3][t]) : ""));
+        }
+        a = ((sl = s.length) > 1 ? (a = s.pop(), s.join(" ") + e + a) : s.join("") || ((!j && (n[j + 1] * 1 > 0) || r.length) ? "" : ex[0][0]));
+        a && r.push(a + (c ? (" " + (v.join("") * 1 > 1 ? j ? d + "s" : (/0{6,}$/.test(n[0]) ? "de " : "") + $.replace("l", "is") : j ? d : $)) : ""));
+    }
+    return r.join(e);
+}
+
+		
 	var equals = function( x, y ) {
     // If both x and y are null or undefined and exactly the same
     if ( x === y ) {
@@ -80,18 +104,35 @@ angular.module('app')
 	vm.funcoes = 
 	[
 		{'funcao': 'Fiscal', 'valor': 0},
-		{'funcao': 'Fiscal de Detector', 'valor': 0},
+	
+		{'funcao': 'Fiscal de Área', 'valor': 0},
+		
+		{'funcao': 'Enfermeiro', 'valor': 0},
+		
 		{'funcao': 'Apoio', 'valor': 0},
+		
 		{'funcao': 'Bombeiro Hidráulico', 'valor': 0},
+	
 		{'funcao': 'Fiscal Volante', 'valor': 0},
+	
 		{'funcao': 'Fiscal', 'valor': 0},
+	
 		{'funcao': 'Coordenador', 'valor': 0}, 
-		{'funcao': 'Auxiliar de Coordenação', 'valor': 0}, 
+		
+		{'funcao': 'Auxiliar de Coordenação', 'valor': 0},
+		
+		{'funcao': 'Auxiliar', 'valor': 0}, 
+		
 		{'funcao': 'Administrador', 'valor': 0},
+		
 		{'funcao': 'Chefe de Local', 'valor': 0},
+	
 		{'funcao': 'Representante', 'valor': 0},
+		
 		{'funcao': 'Eletricista', 'valor': 0} ,
+	
 		{'funcao': 'Porteiro', 'valor': 0},
+	
 		{'funcao': 'Interprete de libras', 'valor': 0}
 	]
 
@@ -167,17 +208,24 @@ angular.module('app')
 			var array = [];
 
 			resp.forEach(function(value){
-
 				var obj = {}
 				obj.cpf = value.cpf;
 				obj.data = vm.concursoAtual.data;
 				obj.periodo = vm.concursoAtual.periodo;
 				obj.nome = vm.concursoAtual.nome;
-				obj.funcao = vm.funcao.funcao;
+
+				
+				if(vm.concursoAtual.periodo === 'Integral'){
+					obj.funcao = vm.funcao.funcao + ' Integral';
+					console.log(obj);
+				}else{
+					obj.funcao = vm.funcao.funcao;
+				}
+
 				array.push(obj);
 			})
 
-
+	
 			array.forEach(function(value){
 				var promise = consespService.criarConcurso(value);
 				promise.then(function(data){
