@@ -16,7 +16,7 @@
 		
 		<form name="myForm">
         <label class="fonteBranca">Escolha um concurso</label>
-            <select ng-model='vm.lista' class="form-control" ng-options="item.nome for item in vm.opcoes track by item.nome" ng-change="vm.mudar(vm.lista)"></select>
+            <select ng-model='vm.lista' id="lista" class="form-control" ng-options="item.nome for item in vm.opcoes track by item.nome" ng-change="vm.mudar(vm.lista)"></select>
                
         </form>
 

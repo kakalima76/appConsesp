@@ -217,7 +217,6 @@ angular.module('app')
 				
 				if(vm.concursoAtual.periodo === 'Integral'){
 					obj.funcao = vm.funcao.funcao + ' Integral';
-					console.log(obj);
 				}else{
 					obj.funcao = vm.funcao.funcao;
 				}

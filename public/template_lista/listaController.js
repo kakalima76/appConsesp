@@ -5,6 +5,9 @@ angular.module('app')
 	vm.user = $window.localStorage['usuario'];
 	vm.listaColaboradores = [];
 
+	var lista = document.getElementById("lista");
+	lista.selectedIndex = 1;
+
 	function compareNome(a,b) {
 	  	if(a.nome < b.nome){
 	  		return -1;
@@ -20,10 +23,7 @@ angular.module('app')
 		vm.opcoes = data.data;
 	});
 
-	var promise2 = consespService.getColaboradores();
-	promise2.then(function(data){
-		arrayColaboradores = data.data;
-	})
+	
 	
 	function isEmpty(val){
     	return (val === undefined || val == null || val.length <= 0) ? true : false;
@@ -55,21 +55,22 @@ angular.module('app')
 	}
 
 	vm.mudar = function(obj){
-		var funcao;
-
-		vm.listaColaboradores = [];
-		arrayColaboradores.forEach(function(cadastro){
-			vm.listaColaboradores.sort(compareNome);
-			cadastro.concursos.forEach(function(concurso){
-				if(concurso.nome === obj.nome){
-					cadastro.funcao = concurso.funcao;
-					cadastro.local = vm.lista.nome;
-					cadastro.data = concurso.data;
-					vm.listaColaboradores.push(cadastro);
-				}
+		var promise2 = consespService.getColaboradores();
+		promise2.then(function(data){
+			arrayColaboradores = data.data;
+			vm.listaColaboradores = [];
+			arrayColaboradores.forEach(function(cadastro){
+				vm.listaColaboradores.sort(compareNome);
+				cadastro.concursos.forEach(function(concurso){
+					if(concurso.nome === obj.nome){
+						cadastro.funcao = concurso.funcao;
+						cadastro.local = vm.lista.nome;
+						cadastro.data = concurso.data;
+						vm.listaColaboradores.push(cadastro);
+					}
+				})
 			})
 		})
-
 	}
 
 	vm.imprimir = function(value){
@@ -77,7 +78,7 @@ angular.module('app')
 		$location.path('imprimir');
 	}
 
-	vm.excluir = function(array){
+	vm.excluir = function(value){
 		//necessário se faz recuperar o valor do _id desse concurso;
 		var obj = {}
 
@@ -85,19 +86,24 @@ angular.module('app')
 			return value.nome === vm.lista.nome;
 		}
 
-		var res = array.concursos.filter(filtro);
+		var res = value.concursos.filter(filtro);
 
-		obj.idCadastro = array._id;
+		obj.idCadastro = value._id;
 		obj.idConcurso = res[0]._id;
 		
 		var promise = consespService.removerConcurso(obj);
 
 		promise.then(function(data){
 			if(data.status === 200){
-				$route.reload();
+					var index = vm.listaColaboradores.findIndex(i => i.nome === value.nome);
+					vm.listaColaboradores.splice(index, 1);
 			}
+						
 		})
 
+
+
+		
 	}
 
 }]);
