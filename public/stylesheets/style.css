@@ -320,3 +320,15 @@ p{
   border-color: black;
   border-width: 1px;
 }
+
+.colunaCPF {
+  width: 8%;
+}
+
+.colunaNome {
+  width: 40%;
+}
+
+.colunaAssinatura {
+  width: 44%;
+}

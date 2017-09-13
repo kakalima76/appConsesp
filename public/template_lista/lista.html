@@ -17,7 +17,8 @@
 		<form name="myForm">
         <label class="fonteBranca">Escolha um concurso</label>
             <select ng-model='vm.lista' id="lista" class="form-control" ng-options="item.nome for item in vm.opcoes track by item.nome" ng-change="vm.mudar(vm.lista)"></select>
-               
+        <label class="fonteBranca">Escolha uma função</label>
+            <select ng-model='vm.funcao' class="form-control" ng-options="item for item in vm.select" ng-change="vm.filtrar(vm.funcao)"></select>
         </form>
 
         <div class="{{vm.classe}} corpoProdutos" role="alert">
@@ -43,7 +44,7 @@
                      <td class="fundoBranco afastamentoTabelaEsquerda coluna1">{{campo.funcao}}</td>
 
                     <td class="centralizado fundoBranco coluna1">
-                        <li class="list-group-item" ng-click='vm.imprimir(campo)'>
+                        <li class="list-group-item">
                         <span class="badge"></span>
     
                         <a  target="_blank" ng-href='/#/imprimir/{{campo._id}}/{{campo.funcaoFormatada}}/{{campo.localFormatada}}'>imprimir recibo</a>
@@ -59,6 +60,10 @@
                      
                 </tr>
         </table>
+    </div>
+
+    <div class="inputBox">
+        <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.imprimir()">Imprimir a lista</button>
     </div>
 
     	

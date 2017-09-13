@@ -1,14 +1,11 @@
 angular.module('app')
-.controller('listaController', ['cadastroFactory', '$window', 'consespService', '$scope', '$route', '$location', function(cadastroFactory, $window, consespService, $scope, $route, $location){
+.controller('listaController', ['cadastroFactory', '$window', 'consespService', '$scope', '$route', '$location', '$filter',function(cadastroFactory, $window, consespService, $scope, $route, $location, $filter){
 	var vm = this;
 	var arrayColaboradores;
 	vm.user = $window.localStorage['usuario'];
 	vm.listaColaboradores = [];
-	vm.contador = 0;
 	vm.classe = 'alert alert-success';
-
-	var lista = document.getElementById("lista");
-	lista.selectedIndex = 1;
+	vm.select = ['Mostrar todos'];
 
 	function compareNome(a,b) {
 	  	if(a.nome < b.nome){
@@ -36,15 +33,6 @@ angular.module('app')
 		$window.localStorage.removeItem('usuario');
 	}
 
-	function compareNome(a,b) {
-	  	if(a.nome < b.nome){
-	  		return -1;
-	  	}else if (a.nome > b.nome){
-	  		return 1;
-	  	}else{
-	  		return 0;
-	    }	 
-	}
 
 	var testaQuantidade = function(){
 		if(vm.contador >= vm.lista.quantidade){
@@ -70,9 +58,41 @@ angular.module('app')
 			arrayColaboradores = data.data;
 			vm.listaColaboradores = [];
 			arrayColaboradores.forEach(function(cadastro){
-				vm.listaColaboradores.sort(compareNome);
+				cadastro.nome = $filter('lowercase')(cadastro.nome)
 				cadastro.concursos.forEach(function(concurso){
+
+				
 					if(concurso.nome === obj.nome){
+						cadastro.funcao = concurso.funcao;
+					}
+
+					
+					var index = vm.select.indexOf(cadastro.funcao);
+						if(index === -1){
+							if(!isEmpty(cadastro.funcao)){
+							vm.select.push(cadastro.funcao);
+							}
+						}
+
+					
+				})
+			})
+
+			
+			testaQuantidade();
+
+		})
+	}
+
+	vm.filtrar = function(funcao){
+			vm.contador = 0;
+			vm.listaColaboradores = [];
+			arrayColaboradores.forEach(function(cadastro){
+				cadastro.nome = $filter('lowercase')(cadastro.nome)
+				cadastro.concursos.forEach(function(concurso){
+
+				
+					if(concurso.nome === vm.lista.nome){
 						cadastro.funcao = concurso.funcao;
 						cadastro.local = vm.lista.nome;
 						cadastro.funcaoFormatada = concurso.funcao.replace(/( )/g, "%20");
@@ -83,23 +103,40 @@ angular.module('app')
 					}
 
 					vm.listaColaboradores.sort(compareNome);
+
+					var index = vm.select.indexOf(cadastro.funcao);
+						if(index === -1){
+							if(!isEmpty(cadastro.funcao)){
+							vm.select.push(cadastro.funcao);
+							}
+						}
+
 					
 				})
 			})
 
+			var filtro = function(value){
+				return value.funcao === funcao; 
+			}
+
 			vm.listaColaboradores.forEach(i => vm.contador++);
 			testaQuantidade();
+
+			if(funcao !== 'Mostrar todos'){
+				vm.listaColaboradores = vm.listaColaboradores.filter(filtro);
+			}
 			
-
-		})
-
-
+			
 	}
 
-	vm.imprimir = function(value){
-		cadastroFactory.set(value);
-		//$location.path('imprimir');
-		console.log(value);
+	vm.imprimir = function(){
+		if(vm.listaColaboradores.length > 0){
+			cadastroFactory.set(vm.listaColaboradores);
+			$location.path('relacao');
+		}else{
+			$window.alert("Defina um concurso");
+		}
+		
 	}
 
 	vm.excluir = function(value){
@@ -119,8 +156,12 @@ angular.module('app')
 
 		promise.then(function(data){
 			if(data.status === 200){
-					var index = vm.listaColaboradores.findIndex(i => i.nome === value.nome);
-					vm.listaColaboradores.splice(index, 1);
+					var index = arrayColaboradores.findIndex(i => i.nome === value.nome);
+					arrayColaboradores.splice(index, 1);
+					var index2 = vm.listaColaboradores.findIndex(i => i.nome === value.nome);
+					vm.listaColaboradores.splice(index2, 1);
+
+
 					vm.contador--;
 					testaQuantidade();
 			}
@@ -128,8 +169,8 @@ angular.module('app')
 		})
 
 
-
-		
 	}
+
+
 
 }]);

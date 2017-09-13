@@ -1,0 +1,17 @@
+<div class="corpoProdutos">
+        <center><h3><b><u>LISTA DE PRESENÇA</u></b></h3></center>
+        <table class="tabela">
+                <tr>
+                    <td class="centralizado headerTabela colunaCPF">cpf</td>
+                    <td class="centralizado headerTabela colunaNome" >nome</td>
+                    <td class="centralizado headerTabela colunaCPF">função</td>
+                    <td class="centralizado headerTabela colunaAssinatura">assinatura</td>                  
+                </tr>
+                <tr ng-repeat="campo in vm.colaboradores">
+                    <td class="centralizado fundoBranco colunaCPF">{{campo.cpf}}</td>
+                    <td class="fundoBranco afastamentoTabelaEsquerda colunaNome">{{campo.nome | uppercase}}</td>
+                    <td class="fundoBranco afastamentoTabelaEsquerda colunaCPF">{{campo.funcao}}</td>
+                    <td class="centralizado fundoBranco colunaAssinatura"></td>                     
+                </tr>
+        </table>
+    </div>
