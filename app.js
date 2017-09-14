@@ -22,6 +22,13 @@ app.use(function(req, res){
   res.sendfile(path.join(_dirname, 'public', 'index.html'));
 })
 
+app.use(function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, timeout");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
+  next();
+});
+
 /*app.use('/', routes);*/
 
 
