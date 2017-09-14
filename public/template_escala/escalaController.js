@@ -177,8 +177,13 @@ angular.module('app')
 				
 				data.data.forEach(function(cadastro, index){
 					cadastro.nome = $filter('uppercase')(cadastro.nome);
+					
+
+				
 					var index = cadastro.concursos.findIndex(i => i.nome === value.nome);
-					if(index === -1)
+					var index2 = cadastro.concursos.findIndex(i => i.data === value.data);
+
+					if(index === -1 && index2 === -1)
 					{
 						vm.colaboradores.push(cadastro);
 						vm.colaboradores.sort(compareNome);
