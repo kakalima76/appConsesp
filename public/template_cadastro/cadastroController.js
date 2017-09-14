@@ -82,8 +82,10 @@ angular.module('app')
 				})
 
 				.catch(function(err){
-					$window.alert(err);
-					console.log(err);
+					if(err.data.code === 11000){
+						$window.alert('CPF JÁ CADASTRADO');
+					}
+					
 				})
 
 				vm.cadastro = {}
