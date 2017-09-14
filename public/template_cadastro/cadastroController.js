@@ -72,8 +72,8 @@ angular.module('app')
 
 				vm.cadastro.sexo = obj.sexo.codigo;
 
-				vm.cadastro.cpf = formataCPF(vm.cadastro.cpf);
-
+				obj.cpf = formataCPF(vm.cadastro.cpf);
+				
 				var promise = consespService.setColaborador(obj);
 				promise
 				.then(function(data){
@@ -83,6 +83,7 @@ angular.module('app')
 
 				.catch(function(err){
 					$window.alert(err);
+					console.log(err);
 				})
 
 				vm.cadastro = {}
