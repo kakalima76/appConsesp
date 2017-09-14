@@ -4,11 +4,7 @@ angular.module('app')
 	var valor = 100;
 	var local = 'LOCAL DE TESTE';
 
-    console.log($routeParams._id);
-    console.log($routeParams.funcao);
-    console.log($routeParams.local);
-
-
+  
 	var dataAtual = function(data){
 		
 		var dia = data.substring(8)
@@ -39,8 +35,8 @@ angular.module('app')
             [
                 {'funcao': 'Fiscal', 'valor': '80,00', 'extenso': '(oitenta reais)'},
                 {'funcao': 'Fiscal Integral', 'valor': '160,00', 'extenso': '(cento e sessenta reais)'},
-                {'funcao': 'Fiscal de Detector', 'valor': '80,00', 'extenso': '(oitenta reais)'},
-                {'funcao': 'Fiscal de Detector Integral', 'valor': '160,00', 'extenso': '(cento e sessenta reais)'},
+                {'funcao': 'Fiscal de Área', 'valor': '80,00', 'extenso': '(oitenta reais)'},
+                {'funcao': 'Fiscal de Área Integral', 'valor': '160,00', 'extenso': '(cento e sessenta reais)'},
                 {'funcao': 'Apoio', 'valor': '80,00', 'extenso': '(oitenta reais)'},
                 {'funcao': 'Apoio Integral', 'valor': '160,00', 'extenso': '(cento e sessenta reais)'},
                 {'funcao': 'Bombeiro Hidráulico', 'valor': '300,00', 'extenso': '(trezentos reais)'},
@@ -82,14 +78,12 @@ angular.module('app')
         var promise = consespService.getColaboradores();
         promise.then(function(array){
            var index = array.data.findIndex(i => i._id === $routeParams._id);
-           console.log(index);
-           console.log(array.data);
-           console.log(array.data[index]);
+  
            vm.cadastro = array.data[index];
            vm.cadastro.local = $routeParams.local;
            vm.cadastro.funcao = $routeParams.funcao;
-           console.log(vm.cadastro);
-
+           vm.cadastro.data = $routeParams.data;
+     
             vm.linha1 = 'Nome completo: ' + vm.cadastro.nome;
             vm.linha2 = 'Nasc.:  ' + data(vm.cadastro.nascimento) 
                                                 + '   Identidade:   ' + vm.cadastro.idt
@@ -121,7 +115,6 @@ angular.module('app')
                 vm.declaracao += ' por afinidade, com os membros do(a) ' + vm.cadastro.local ;
                 vm.declaracao += ' e com os canditados inscritos no certame, bem como não ministra';
                 vm.declaracao += ' aulas em cursos preparatórios relativos ao processo em questão'  + '.';
-
                 vm.dataAtual = dataAtual(vm.cadastro.data);
 
                 

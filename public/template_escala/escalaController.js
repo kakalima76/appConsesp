@@ -104,35 +104,20 @@ angular.module('app')
 	vm.funcoes = 
 	[
 		{'funcao': 'Fiscal', 'valor': 0},
-	
 		{'funcao': 'Fiscal de Área', 'valor': 0},
-		
 		{'funcao': 'Enfermeiro', 'valor': 0},
-		
 		{'funcao': 'Apoio', 'valor': 0},
-		
 		{'funcao': 'Bombeiro Hidráulico', 'valor': 0},
-	
 		{'funcao': 'Fiscal Volante', 'valor': 0},
-	
 		{'funcao': 'Fiscal', 'valor': 0},
-	
 		{'funcao': 'Coordenador', 'valor': 0}, 
-		
 		{'funcao': 'Auxiliar de Coordenação', 'valor': 0},
-		
 		{'funcao': 'Auxiliar', 'valor': 0}, 
-		
 		{'funcao': 'Administrador', 'valor': 0},
-		
 		{'funcao': 'Chefe de Local', 'valor': 0},
-	
 		{'funcao': 'Representante', 'valor': 0},
-		
 		{'funcao': 'Eletricista', 'valor': 0} ,
-	
 		{'funcao': 'Porteiro', 'valor': 0},
-	
 		{'funcao': 'Interprete de libras', 'valor': 0}
 	]
 
@@ -145,7 +130,6 @@ angular.module('app')
 	  		return 0;
 	    }	 
 	}
-
 
 
 	function isEmpty(val){
@@ -162,7 +146,6 @@ angular.module('app')
 		var data = data.substring(0,4) + '-' + data.substring(5,7) + '-' + data.substring(8,10);
 		
 	};
-
 
 	vm.mudar = function(){
 		vm.colaboradores = [];
@@ -197,8 +180,6 @@ angular.module('app')
 		}
 		
 	}
-
-
 	
 	vm.salvar = function(value){
 
@@ -241,7 +222,5 @@ angular.module('app')
 			$window.alert("Selecione uma função");
 		}//testando para ver se foi escolhida uma função
 	}
-
-	
 
 }]);
