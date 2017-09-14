@@ -28,6 +28,12 @@ angular.module('app')
     	return (val === undefined || val == null || val.length <= 0) ? true : false;
 	}
 
+	var formataCPF = function(cpf){
+		cpf = cpf.replace(/[^\d]+/g, '');
+		cpf = cpf.substring(0,3) + '.' + cpf.substring(3,6) + '.' + cpf.substring(6,9) + '-' + cpf.substring(9); 
+		return cpf;
+	}
+
 	vm.logoff = function(){
 		$window.localStorage.removeItem('usuario');
 		console.log('teste');
@@ -65,6 +71,9 @@ angular.module('app')
 				}
 
 				vm.cadastro.sexo = obj.sexo.codigo;
+
+				vm.cadastro.cpf = formataCPF(vm.cadastro.cpf);
+
 				var promise = consespService.setColaborador(obj);
 				promise
 				.then(function(data){
@@ -73,7 +82,7 @@ angular.module('app')
 				})
 
 				.catch(function(err){
-					console.log(err);
+					$window.alert(err);
 				})
 
 				vm.cadastro = {}
