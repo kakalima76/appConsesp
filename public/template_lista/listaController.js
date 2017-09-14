@@ -85,6 +85,7 @@ angular.module('app')
 	}
 
 	vm.filtrar = function(funcao){
+			vm.funcoesQuantidade = 0;
 			vm.contador = 0;
 			vm.listaColaboradores = [];
 			arrayColaboradores.forEach(function(cadastro){
@@ -124,6 +125,9 @@ angular.module('app')
 
 			if(funcao !== 'Mostrar todos'){
 				vm.listaColaboradores = vm.listaColaboradores.filter(filtro);
+
+				vm.listaColaboradores.forEach(i => vm.funcoesQuantidade++);
+
 			}
 			
 			
